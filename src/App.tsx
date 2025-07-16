@@ -1,172 +1,157 @@
 import { useState, useEffect } from 'react';
 import { dietPlan } from './diet-plan';
+import { Layout, Card, Button, DatePicker, Checkbox, List, Row, Col, Typography, Space, message } from 'antd';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import type { CheckboxChangeEvent } from 'antd/es/checkbox';
+import dayjs from 'dayjs';
 import './App.css';
 
+const { Header, Content, Footer } = Layout;
+const { Title, Text } = Typography;
+
 function App() {
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [now, setNow] = useState(new Date());
+  const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
+  const [currentDate, setCurrentDate] = useState(dayjs());
+  const [now, setNow] = useState(dayjs());
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    const timer = setInterval(() => setNow(new Date()), 1000);
+    const timer = setInterval(() => setNow(dayjs()), 1000);
     return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
-    // Clear all checkboxes when the date changes
     setCheckedItems({});
   }, [currentDate]);
 
-  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const date = new Date(event.target.value);
-    // Adjust for timezone offset to prevent date from changing
-    const timezoneOffset = date.getTimezoneOffset() * 60000;
-    setStartDate(new Date(date.getTime() + timezoneOffset));
-    setCurrentDate(new Date(date.getTime() + timezoneOffset));
+  const handleDateChange = (date: dayjs.Dayjs | null) => {
+    if (date) {
+      setStartDate(date);
+      setCurrentDate(date);
+      message.success(`Diet start date set to ${date.format('YYYY-MM-DD')}`);
+    } else {
+      setStartDate(null);
+    }
   };
 
-  const handleCheckboxChange = (item: string) => {
-    setCheckedItems(prev => ({ ...prev, [item]: !prev[item] }));
+  const handleCheckboxChange = (e: CheckboxChangeEvent) => {
+    const item = e.target.name as string;
+    setCheckedItems(prev => ({ ...prev, [item]: e.target.checked }));
   };
 
   const goToPreviousDay = () => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(newDate.getDate() - 1);
-    setCurrentDate(newDate);
+    setCurrentDate(currentDate.subtract(1, 'day'));
   };
 
   const goToNextDay = () => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(newDate.getDate() + 1);
-    setCurrentDate(newDate);
+    setCurrentDate(currentDate.add(1, 'day'));
   };
 
   const renderDietPlan = () => {
     if (!startDate) {
-      return <p className='text-center'>Please select a start date for your diet plan.</p>;
+      return <Text type="secondary" style={{ textAlign: 'center', display: 'block' }}>Please select a start date for your diet plan.</Text>;
     }
 
-    const dayOfDiet = Math.floor((currentDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) + 1;
+    const dayOfDiet = currentDate.diff(startDate, 'day') + 1;
     const week = Math.ceil(dayOfDiet / 7);
     const dayOfWeek = dayOfDiet > 0 ? ((dayOfDiet - 1) % 7) + 1 : 1;
 
     if (week < 1 || week > dietPlan.length) {
-      return <p className='text-center'>No diet plan available for this date.</p>;
+      return <Text type="danger" style={{ textAlign: 'center', display: 'block' }}>No diet plan available for this date.</Text>;
     }
 
     const weeklyPlan = dietPlan[week - 1];
     const dailyPlan = weeklyPlan?.dailyPlans.find(p => p.day === dayOfWeek);
 
     if (!dailyPlan) {
-      return <p className='text-center'>No diet plan available for this day.</p>;
+      return <Text type="danger" style={{ textAlign: 'center', display: 'block' }}>No diet plan available for this day.</Text>;
     }
 
     return (
-      <div className="card">
-        <div className="card-header">
-          <h2>Week {week}, Day {dayOfWeek}</h2>
-          <p className='mb-0'>{currentDate.toDateString()}</p>
-        </div>
-        <div className="card-body">
-          <h3 className="card-title">Daily Checklist</h3>
-          <ul className="list-group mb-4">
-            {weeklyPlan.checklist.map((item, index) => (
-              <li key={index} className="list-group-item">
-                <input
-                  type="checkbox"
-                  id={`checklist-${index}`}
-                  checked={!!checkedItems[`checklist-${index}`]}
-                  onChange={() => handleCheckboxChange(`checklist-${index}`)}
-                  className="form-check-input me-2"
-                />
-                <label htmlFor={`checklist-${index}`}>{item}</label>
-              </li>
-            ))}
-          </ul>
-
-          <h3 className="card-title">Meal Plan</h3>
-          <div className="row">
-            <div className="col-md-4 mb-3">
-              <div className="card h-100">
-                <div className="card-body">
-                  <h5 className="card-title">
-                    <input
-                      type="checkbox"
-                      id="breakfast-check"
-                      checked={!!checkedItems['breakfast']}
-                      onChange={() => handleCheckboxChange('breakfast')}
-                      className="form-check-input me-2"
-                    />
-                    <label htmlFor="breakfast-check">Breakfast</label>
-                  </h5>
-                  <p className="card-text">{dailyPlan.mealPlan.breakfast}</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 mb-3">
-              <div className="card h-100">
-                <div className="card-body">
-                  <h5 className="card-title">
-                    <input
-                      type="checkbox"
-                      id="lunch-check"
-                      checked={!!checkedItems['lunch']}
-                      onChange={() => handleCheckboxChange('lunch')}
-                      className="form-check-input me-2"
-                    />
-                    <label htmlFor="lunch-check">Lunch</label>
-                  </h5>
-                  <p className="card-text">{dailyPlan.mealPlan.lunch}</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 mb-3">
-              <div className="card h-100">
-                <div className="card-body">
-                  <h5 className="card-title">
-                    <input
-                      type="checkbox"
-                      id="dinner-check"
-                      checked={!!checkedItems['dinner']}
-                      onChange={() => handleCheckboxChange('dinner')}
-                      className="form-check-input me-2"
-                    />
-                    <label htmlFor="dinner-check">Dinner</label>
-                  </h5>
-                  <p className="card-text">{dailyPlan.mealPlan.dinner}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <h3 className="card-title mt-4">Allowed Foods for this Week</h3>
-          <ul className="list-group">
-            {weeklyPlan.allowedFoods.map((food, index) => (
-              <li key={index} className="list-group-item">{food}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <Card title={`Week ${week}, Day ${dayOfWeek} (${currentDate.format('YYYY-MM-DD')})`}>
+        <Row gutter={[16, 16]}>
+          <Col xs={24} md={12}>
+            <Card title="Daily Checklist">
+              <List
+                dataSource={weeklyPlan.checklist}
+                renderItem={(item, index) => (
+                  <List.Item>
+                    <Checkbox name={`checklist-${index}`} checked={!!checkedItems[`checklist-${index}`]} onChange={handleCheckboxChange}>
+                      {item}
+                    </Checkbox>
+                  </List.Item>
+                )}
+              />
+            </Card>
+          </Col>
+          <Col xs={24} md={12}>
+            <Card title="Allowed Foods for this Week">
+              <List
+                dataSource={weeklyPlan.allowedFoods}
+                renderItem={item => <List.Item>{item}</List.Item>}
+              />
+            </Card>
+          </Col>
+        </Row>
+        <Card title="Meal Plan" style={{ marginTop: 16 }}>
+          <Row gutter={16}>
+            <Col xs={24} sm={8}>
+              <Card type="inner" title="Breakfast">
+                <Checkbox name="breakfast" checked={!!checkedItems['breakfast']} onChange={handleCheckboxChange}>
+                  {dailyPlan.mealPlan.breakfast}
+                </Checkbox>
+              </Card>
+            </Col>
+            <Col xs={24} sm={8}>
+              <Card type="inner" title="Lunch">
+                <Checkbox name="lunch" checked={!!checkedItems['lunch']} onChange={handleCheckboxChange}>
+                  {dailyPlan.mealPlan.lunch}
+                </Checkbox>
+              </Card>
+            </Col>
+            <Col xs={24} sm={8}>
+              <Card type="inner" title="Dinner">
+                <Checkbox name="dinner" checked={!!checkedItems['dinner']} onChange={handleCheckboxChange}>
+                  {dailyPlan.mealPlan.dinner}
+                </Checkbox>
+              </Card>
+            </Col>
+          </Row>
+        </Card>
+      </Card>
     );
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Switch On Diet</h1>
-      <div className="card p-3 mb-4">
-        <div className="d-flex justify-content-between align-items-center">
-            <button className="btn btn-primary" onClick={goToPreviousDay} disabled={!startDate}>&lt; Previous Day</button>
-            <div className='text-center'>
-                <p className="text-center mb-1">{now.toLocaleTimeString()}</p>
-                <label htmlFor='start-date-picker'>Select Diet Start Date:</label>
-                <input type="date" id='start-date-picker' onChange={handleDateChange} className="form-control" />
-            </div>
-            <button className="btn btn-primary" onClick={goToNextDay} disabled={!startDate}>Next Day &gt;</button>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Header style={{ color: 'white', textAlign: 'center' }}>
+        <Title level={2} style={{ color: 'inherit', margin: '16px 0' }}>Switch On Diet</Title>
+      </Header>
+      <Content style={{ padding: '24px 50px' }}>
+        <Card>
+          <Row justify="space-between" align="middle">
+            <Col>
+              <Button icon={<LeftOutlined />} onClick={goToPreviousDay} disabled={!startDate}>Previous Day</Button>
+            </Col>
+            <Col>
+              <Space direction="vertical" align="center">
+                <Title level={4}>{now.format('HH:mm:ss')}</Title>
+                <DatePicker onChange={handleDateChange} />
+              </Space>
+            </Col>
+            <Col>
+              <Button icon={<RightOutlined />} onClick={goToNextDay} disabled={!startDate}>Next Day</Button>
+            </Col>
+          </Row>
+        </Card>
+        <div style={{ marginTop: 24 }}>
+          {renderDietPlan()}
         </div>
-      </div>
-      {renderDietPlan()}
-    </div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>
+        SwitchOnDiet ©{new Date().getFullYear()} Created with Ant Design
+      </Footer>
+    </Layout>
   );
 }
 

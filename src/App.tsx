@@ -14,8 +14,9 @@ import {
   message,
   ConfigProvider,
   Divider,
+  Popconfirm,
 } from "antd";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { LeftOutlined, RightOutlined, ClearOutlined } from "@ant-design/icons";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import dayjs from "dayjs";
 import "./App.css";
@@ -85,6 +86,19 @@ function App() {
 
   const goToNextDay = () => {
     setCurrentDate(currentDate.add(1, "day"));
+  };
+
+  const handleResetData = () => {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith("diet-checklist-")) {
+        localStorage.removeItem(key);
+      }
+    }
+    setStartDate(null);
+    setCurrentDate(dayjs());
+    setCheckedItems({});
+    message.success("All diet data has been reset!");
   };
 
   const renderDietPlan = () => {
@@ -244,6 +258,16 @@ function App() {
                     {now.format("HH:mm:ss")}
                   </Title>
                   <DatePicker onChange={handleDateChange} />
+                  <Popconfirm
+                    title="Are you sure to reset all diet data?"
+                    onConfirm={handleResetData}
+                    okText="Yes"
+                    cancelText="No"
+                  >
+                    <Button type="primary" danger icon={<ClearOutlined />}>
+                      Reset All Data
+                    </Button>
+                  </Popconfirm>
                 </Space>
               </Col>
               <Col>

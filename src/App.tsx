@@ -248,16 +248,17 @@ function App() {
               align="middle"
               wrap={true}
             >
-              <Col xs={8} sm={8} style={{ textAlign: "center" }}>
+              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
                 <Button
                   icon={<LeftOutlined />}
                   onClick={goToPreviousDay}
                   disabled={!startDate}
+                  block
                 >
                   Previous Day
                 </Button>
               </Col>
-              <Col xs={8} sm={8} style={{ textAlign: "center" }}>
+              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
                 <Space
                   direction="vertical"
                   align="center"
@@ -276,17 +277,23 @@ function App() {
                     okText="Yes"
                     cancelText="No"
                   >
-                    <Button type="primary" danger icon={<ClearOutlined />}>
+                    <Button
+                      type="primary"
+                      danger
+                      icon={<ClearOutlined />}
+                      block
+                    >
                       Reset All Data
                     </Button>
                   </Popconfirm>
                 </Space>
               </Col>
-              <Col xs={8} sm={8} style={{ textAlign: "center" }}>
+              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
                 <Button
                   icon={<RightOutlined />}
                   onClick={goToNextDay}
                   disabled={!startDate}
+                  block
                 >
                   Next Day
                 </Button>

@@ -1,16 +1,16 @@
-html {
-  overflow-y: scroll;
-}
-
-body {
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  min-height: 100%;
   overflow-x: hidden;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Ensure layout scrolls naturally */
+body {
+  overflow-y: auto;
 }
 
 .logo {
@@ -48,6 +48,10 @@ body {
 .clock-title {
   word-break: break-word;
   font-size: 1.2rem;
+}
+
+.main-content {
+  padding: 24px 16px;
 }
 
 .read-the-docs {

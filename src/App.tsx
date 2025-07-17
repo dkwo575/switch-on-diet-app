@@ -166,7 +166,7 @@ function App() {
                   </Checkbox>
                 </List.Item>
               )}
-              style={{ maxHeight: 250, overflowY: "auto" }}
+              style={{ overflowY: "auto" }}
             />
           </Col>
           <Col xs={24} lg={12}>
@@ -175,7 +175,7 @@ function App() {
               bordered
               dataSource={weeklyPlan.allowedFoods}
               renderItem={(item) => <List.Item>{item}</List.Item>}
-              style={{ maxHeight: 250, overflowY: "auto" }}
+              style={{ overflowY: "auto" }}
             />
           </Col>
         </Row>
@@ -222,9 +222,7 @@ function App() {
 
   return (
     <ConfigProvider>
-      <Layout
-        style={{ minHeight: "100vh", backgroundColor: theme.palette.pumpkin2 }}
-      >
+      <Layout style={{ backgroundColor: theme.palette.pumpkin2 }}>
         <Header
           style={{
             backgroundColor: theme.palette.pumpkin1,
@@ -247,18 +245,9 @@ function App() {
           className="content"
           style={{ maxWidth: 1200, margin: "0 auto" }}
         >
-          <Card style={{ marginBottom: 24, overflow: "visible" }}>
-            <Row
-              gutter={[8, 8]}
-              justify="space-between"
-              align="middle"
-              wrap={true}
-            >
-              <Col
-                xs={24}
-                sm={8}
-                style={{ border: "1px dashed red", textAlign: "center" }}
-              >
+          <Card style={{ marginBottom: 24, overflowX: "auto" }}>
+            <Row gutter={[8, 8]} justify="center" align="middle" wrap={true}>
+              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
                 <Button
                   icon={<LeftOutlined />}
                   onClick={goToPreviousDay}
@@ -269,11 +258,7 @@ function App() {
                   Previous Day
                 </Button>
               </Col>
-              <Col
-                xs={24}
-                sm={8}
-                style={{ border: "1px dashed red", textAlign: "center" }}
-              >
+              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
                 <Space
                   direction="vertical"
                   align="center"
@@ -310,11 +295,7 @@ function App() {
                   </Popconfirm>
                 </Space>
               </Col>
-              <Col
-                xs={24}
-                sm={8}
-                style={{ border: "1px dashed red", textAlign: "center" }}
-              >
+              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
                 <Button
                   icon={<RightOutlined />}
                   onClick={goToNextDay}

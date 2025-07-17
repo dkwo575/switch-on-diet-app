@@ -247,33 +247,51 @@ function App() {
           className="content"
           style={{ maxWidth: 1200, margin: "0 auto" }}
         >
-          <Card bordered={false} style={{ marginBottom: 24 }}>
+          <Card
+            variant={false}
+            style={{ marginBottom: 24, overflow: "visible" }}
+          >
             <Row
               gutter={[8, 8]}
               justify="space-between"
               align="middle"
               wrap={true}
             >
-              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
+              <Col
+                xs={24}
+                sm={8}
+                style={{ border: "1px dashed red", textAlign: "center" }}
+              >
                 <Button
                   icon={<LeftOutlined />}
                   onClick={goToPreviousDay}
                   disabled={!startDate}
                   block
+                  className="mobile-full-width"
                 >
                   Previous Day
                 </Button>
               </Col>
-              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
+              <Col
+                xs={24}
+                sm={8}
+                style={{ border: "1px dashed red", textAlign: "center" }}
+              >
                 <Space
                   direction="vertical"
                   align="center"
+                  size="middle"
                   style={{ width: "100%" }}
                 >
-                  <Title level={4} style={{ margin: 0 }}>
+                  <Title
+                    level={4}
+                    className="clock-title"
+                    style={{ margin: 0 }}
+                  >
                     {now.format("HH:mm:ss")}
                   </Title>
                   <DatePicker
+                    className="mobile-full-width"
                     onChange={handleDateChange}
                     style={{ width: "100%" }}
                   />
@@ -288,18 +306,24 @@ function App() {
                       danger
                       icon={<ClearOutlined />}
                       block
+                      className="mobile-full-width"
                     >
                       Reset All Data
                     </Button>
                   </Popconfirm>
                 </Space>
               </Col>
-              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
+              <Col
+                xs={24}
+                sm={8}
+                style={{ border: "1px dashed red", textAlign: "center" }}
+              >
                 <Button
                   icon={<RightOutlined />}
                   onClick={goToNextDay}
                   disabled={!startDate}
                   block
+                  className="mobile-full-width"
                 >
                   Next Day
                 </Button>

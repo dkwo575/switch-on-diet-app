@@ -35,14 +35,19 @@ body {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 768px) {
+  .mobile-full-width {
+    width: 100% !important;
   }
 }
 
 .card {
   padding: 2em;
+}
+
+.clock-title {
+  word-break: break-word;
+  font-size: 1.2rem;
 }
 
 .read-the-docs {

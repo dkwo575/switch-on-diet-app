@@ -20,15 +20,16 @@ import { LeftOutlined, RightOutlined, ClearOutlined } from "@ant-design/icons";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import dayjs from "dayjs";
 import "./App.css";
+import theme from "./theme.ts";
 
 const { Header, Content, Footer } = Layout;
 const { Title, Text } = Typography;
 
-const theme = {
-  token: {
-    colorPrimary: "#1890ff", // A light blue
-  },
-};
+// const theme = {
+//   token: {
+//     colorPrimary: "#1890ff", // A light blue
+//   },
+// };
 
 function App() {
   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
@@ -165,7 +166,7 @@ function App() {
                   </Checkbox>
                 </List.Item>
               )}
-              style={{ height: 250, overflowY: "auto" }}
+              style={{ maxHeight: 250, overflowY: "auto" }}
             />
           </Col>
           <Col xs={24} lg={12}>
@@ -174,7 +175,7 @@ function App() {
               bordered
               dataSource={weeklyPlan.allowedFoods}
               renderItem={(item) => <List.Item>{item}</List.Item>}
-              style={{ height: 250, overflowY: "auto" }}
+              style={{ maxHeight: 250, overflowY: "auto" }}
             />
           </Col>
         </Row>
@@ -182,7 +183,7 @@ function App() {
         <Title level={4}>Meal Plan</Title>
         <Row gutter={16}>
           <Col xs={24} sm={8}>
-            <Card type="inner" title="Breakfast">
+            <Card type="inner" title="Breakfast" className="card-content">
               <Checkbox
                 name="breakfast"
                 checked={!!checkedItems["breakfast"]}
@@ -220,11 +221,13 @@ function App() {
   };
 
   return (
-    <ConfigProvider theme={theme}>
-      <Layout style={{ minHeight: "100vh", backgroundColor: "#f0f2f5" }}>
+    <ConfigProvider>
+      <Layout
+        style={{ minHeight: "100vh", backgroundColor: theme.palette.pumpkin2 }}
+      >
         <Header
           style={{
-            backgroundColor: "#fff",
+            backgroundColor: theme.palette.pumpkin1,
             borderBottom: "1px solid #f0f0f0",
             padding: "0 24px",
           }}
@@ -232,7 +235,7 @@ function App() {
           <Title
             level={2}
             style={{
-              color: theme.token.colorPrimary,
+              color: "#b34700",
               margin: "16px 0",
               textAlign: "center",
             }}
@@ -240,7 +243,10 @@ function App() {
             Switch On Diet
           </Title>
         </Header>
-        <Content style={{ padding: "24px 50px" }}>
+        <Content
+          className="content"
+          style={{ maxWidth: 1200, margin: "0 auto" }}
+        >
           <Card bordered={false} style={{ marginBottom: 24 }}>
             <Row
               gutter={[8, 8]}
@@ -302,7 +308,12 @@ function App() {
           </Card>
           {renderDietPlan()}
         </Content>
-        <Footer style={{ textAlign: "center", backgroundColor: "#f0f2f5" }}>
+        <Footer
+          style={{
+            textAlign: "center",
+            backgroundColor: theme.palette.primary3,
+          }}
+        >
           SwitchOnDiet ©{new Date().getFullYear()} Created with Ant Design
         </Footer>
       </Layout>

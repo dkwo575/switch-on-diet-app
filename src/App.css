@@ -2,6 +2,10 @@ html {
   overflow-y: scroll;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -43,4 +47,13 @@ html {
 
 .read-the-docs {
   color: #888;
+}
+
+.card-content {
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.content {
+  padding: 24px 16px;
 }

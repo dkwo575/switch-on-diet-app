@@ -205,6 +205,18 @@ function App() {
             </Card>
           </Col>
           <Col xs={24} sm={8}>
+            <Card type="inner" title="Snack">
+              <Checkbox
+                name="snack"
+                checked={!!checkedItems["snack"]}
+                onChange={handleCheckboxChange}
+              >
+                {dailyPlan.mealPlan.snack}
+              </Checkbox>
+            </Card>
+          </Col>
+
+          <Col xs={24} sm={8}>
             <Card type="inner" title="Dinner">
               <Checkbox
                 name="dinner"

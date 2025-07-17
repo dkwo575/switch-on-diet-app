@@ -239,6 +239,11 @@ function App() {
             }}
           >
             Switch On Diet
+            <img
+              src="/exercise_plan.svg"
+              alt="Health Diet Logo"
+              style={{ height: "40px", marginLeft: "10px" }}
+            />
           </Title>
         </Header>
         <Content

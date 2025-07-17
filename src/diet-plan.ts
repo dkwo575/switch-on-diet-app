@@ -3,6 +3,7 @@ export interface DailyPlan {
   mealPlan: {
     breakfast: string;
     lunch: string;
+    snack: string;
     dinner: string;
   };
 }
@@ -36,6 +37,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Protein Shake",
           lunch: "Protein Shake",
+          snack: "Protein Shake",
           dinner: "Protein Shake",
         },
       },
@@ -44,6 +46,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Protein Shake",
           lunch: "Protein Shake",
+          snack: "Protein Shake",
           dinner: "Protein Shake",
         },
       },
@@ -52,6 +55,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Protein Shake",
           lunch: "Protein Shake",
+          snack: "Protein Shake",
           dinner: "Protein Shake",
         },
       },
@@ -60,6 +64,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Protein Shake",
           lunch: "Low-carb meal",
+          snack: "Protein Shake",
           dinner: "Protein Shake",
         },
       },
@@ -68,6 +73,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Protein Shake",
           lunch: "Low-carb meal",
+          snack: "Protein Shake",
           dinner: "Protein Shake",
         },
       },
@@ -76,6 +82,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Protein Shake",
           lunch: "Low-carb meal",
+          snack: "Protein Shake",
           dinner: "Protein Shake",
         },
       },
@@ -84,6 +91,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Protein Shake",
           lunch: "Low-carb meal",
+          snack: "Protein Shake",
           dinner: "Protein Shake",
         },
       },
@@ -99,6 +107,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Scrambled Eggs",
           lunch: "Grilled Chicken Salad",
+          snack: "Protein Shake",
           dinner: "Baked Salmon with Asparagus",
         },
       },
@@ -107,6 +116,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Avocado Toast",
           lunch: "Tuna Salad",
+          snack: "Protein Shake",
           dinner: "Beef Stir-fry",
         },
       },
@@ -115,6 +125,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Greek Yogurt with Berries",
           lunch: "Leftover Beef Stir-fry",
+          snack: "Protein Shake",
           dinner: "Chicken and Veggie Skewers",
         },
       },
@@ -123,6 +134,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Omelette with Spinach and Feta",
           lunch: "Chicken and Veggie Skewers",
+          snack: "Protein Shake",
           dinner: "Pork Chops with Roasted Brussels Sprouts",
         },
       },
@@ -131,6 +143,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Smoothie with Protein Powder",
           lunch: "Pork Chops with Roasted Brussels Sprouts",
+          snack: "Protein Shake",
           dinner: "Shrimp Scampi with Zucchini Noodles",
         },
       },
@@ -139,6 +152,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Cottage Cheese with Nuts and Seeds",
           lunch: "Shrimp Scampi with Zucchini Noodles",
+          snack: "Protein Shake",
           dinner: "Steak with a Side Salad",
         },
       },
@@ -147,6 +161,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Boiled Eggs",
           lunch: "Steak with a Side Salad",
+          snack: "Protein Shake",
           dinner: "Free Meal",
         },
       },
@@ -162,6 +177,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Oatmeal with Fruits",
           lunch: "Quinoa Salad with Black Beans",
+          snack: "Protein Shake",
           dinner: "Grilled Chicken with Sweet Potato",
         },
       },
@@ -170,6 +186,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Fruit Smoothie",
           lunch: "Leftover Chicken and Sweet Potato",
+          snack: "Protein Shake",
           dinner: "Brown Rice with Steamed Vegetables",
         },
       },
@@ -178,6 +195,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Yogurt with Granola",
           lunch: "Brown Rice and Vegetables",
+          snack: "Protein Shake",
           dinner: "Fish Tacos with Cabbage Slaw",
         },
       },
@@ -186,6 +204,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Scrambled Eggs with Whole Wheat Toast",
           lunch: "Fish Tacos",
+          snack: "Protein Shake",
           dinner: "Pasta with Marinara Sauce and Lean Ground Turkey",
         },
       },
@@ -194,6 +213,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Pancakes with Berries",
           lunch: "Pasta with Marinara",
+          snack: "Protein Shake",
           dinner: "Chicken Fajitas with Bell Peppers and Onions",
         },
       },
@@ -202,6 +222,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Cereal with Milk",
           lunch: "Chicken Fajitas",
+          snack: "Protein Shake",
           dinner: "Homemade Pizza on Whole Wheat Crust",
         },
       },
@@ -210,6 +231,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "French Toast",
           lunch: "Homemade Pizza",
+          snack: "Protein Shake",
           dinner: "Cheat Meal",
         },
       },
@@ -225,6 +247,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Anything you like",
           lunch: "Balanced Meal",
+          snack: "Protein Shake",
           dinner: "Balanced Meal",
         },
       },
@@ -233,6 +256,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Anything you like",
           lunch: "Balanced Meal",
+          snack: "Protein Shake",
           dinner: "Balanced Meal",
         },
       },
@@ -241,6 +265,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Anything you like",
           lunch: "Balanced Meal",
+          snack: "Protein Shake",
           dinner: "Balanced Meal",
         },
       },
@@ -249,6 +274,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Anything you like",
           lunch: "Balanced Meal",
+          snack: "Protein Shake",
           dinner: "Balanced Meal",
         },
       },
@@ -257,6 +283,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Anything you like",
           lunch: "Balanced Meal",
+          snack: "Protein Shake",
           dinner: "Balanced Meal",
         },
       },
@@ -265,6 +292,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Anything you like",
           lunch: "Balanced Meal",
+          snack: "Protein Shake",
           dinner: "Balanced Meal",
         },
       },
@@ -273,6 +301,7 @@ export const dietPlan: WeeklyPlan[] = [
         mealPlan: {
           breakfast: "Anything you like",
           lunch: "Balanced Meal",
+          snack: "Protein Shake",
           dinner: "Balanced Meal",
         },
       },

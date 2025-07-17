@@ -247,10 +247,7 @@ function App() {
           className="content"
           style={{ maxWidth: 1200, margin: "0 auto" }}
         >
-          <Card
-            variant={false}
-            style={{ marginBottom: 24, overflow: "visible" }}
-          >
+          <Card style={{ marginBottom: 24, overflow: "visible" }}>
             <Row
               gutter={[8, 8]}
               justify="space-between"

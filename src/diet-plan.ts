@@ -19,11 +19,20 @@ export const dietPlan: WeeklyPlan[] = [
   {
     week: 1,
     allowedFoods: [
-      "Protein Shake",
-      "Chicken Breast",
-      "Fish",
-      "Tofu",
-      "Vegetables",
+      "녹황색 채소",
+      "두부",
+      "코코넛 오일",
+      "올리브 오일",
+      "무가당 플레인 요거트",
+      "생선",
+      "해산물",
+      "껍질 벗긴 닭고기",
+      "달걀",
+      "버섯",
+      "해조류",
+      "허용된 양념류 (양파, 마늘, 고춧가루, 식초, 후추 등)",
+      "허용된 오일류 (코코넛, 올리브, 아보카도, 냉압착 들기름)",
+      "녹차, 허브티",
     ],
     checklist: [
       "Drink 2L of water",
@@ -99,7 +108,7 @@ export const dietPlan: WeeklyPlan[] = [
   },
   {
     week: 2,
-    allowedFoods: ["Eggs", "Avocado", "Nuts", "Seeds", "Berries"],
+    allowedFoods: ["1주차 모든 허용 음식", "콩류", "견과류 (한 줌)"],
     checklist: ["Drink 2.5L of water", "Workout for 30 mins"],
     dailyPlans: [
       {
@@ -169,7 +178,15 @@ export const dietPlan: WeeklyPlan[] = [
   },
   {
     week: 3,
-    allowedFoods: ["Quinoa", "Brown Rice", "Sweet Potatoes", "Fruits"],
+    allowedFoods: [
+      "2주차 모든 허용 음식",
+      "고구마",
+      "단호박",
+      "바나나",
+      "토마토",
+      "밤",
+      "베리류 과일",
+    ],
     checklist: ["Drink 3L of water", "45-minute run"],
     dailyPlans: [
       {
@@ -239,7 +256,11 @@ export const dietPlan: WeeklyPlan[] = [
   },
   {
     week: 4,
-    allowedFoods: ["All previous foods", "Whole grains", "Legumes"],
+    allowedFoods: [
+      "3주차 모든 허용 음식",
+      "통곡물 (현미, 퀴노아 등)",
+      "다양한 채소와 과일 섭취 권장",
+    ],
     checklist: ["Maintain water intake", "Stay active"],
     dailyPlans: [
       {

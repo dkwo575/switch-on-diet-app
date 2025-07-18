@@ -150,7 +150,7 @@ function App() {
         )})`}
       >
         <Row gutter={[24, 24]}>
-          <Col xs={24} lg={12}>
+          <Col xs={24} lg={8}>
             <Title level={4}>Daily Checklist</Title>
             <List
               bordered
@@ -174,6 +174,15 @@ function App() {
             <List
               bordered
               dataSource={weeklyPlan.allowedFoods}
+              renderItem={(item) => <List.Item>{item}</List.Item>}
+              style={{ overflowY: "auto" }}
+            />
+          </Col>
+          <Col xs={24} lg={12}>
+            <Title level={4}>Forbidden Foods for this Week</Title>
+            <List
+              bordered
+              dataSource={weeklyPlan.forbiddenFoods}
               renderItem={(item) => <List.Item>{item}</List.Item>}
               style={{ overflowY: "auto" }}
             />

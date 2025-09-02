@@ -15,21 +15,18 @@ import {
   ConfigProvider,
   Divider,
   Popconfirm,
+  Tabs,
 } from "antd";
 import { LeftOutlined, RightOutlined, ClearOutlined } from "@ant-design/icons";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import dayjs from "dayjs";
 import "./App.css";
 import theme from "./theme.ts";
+import BodyComposition from "./BodyComposition.tsx";
 
 const { Header, Content, Footer } = Layout;
 const { Title, Text } = Typography;
-
-// const theme = {
-//   token: {
-//     colorPrimary: "#1890ff", // A light blue
-//   },
-// };
+const { TabPane } = Tabs;
 
 function App() {
   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
@@ -92,14 +89,15 @@ function App() {
   const handleResetData = () => {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key && key.startsWith("diet-checklist-")) {
+      if (key && (key.startsWith("diet-checklist-") || key.startsWith("body-composition-data"))) {
         localStorage.removeItem(key);
       }
     }
     setStartDate(null);
     setCurrentDate(dayjs());
     setCheckedItems({});
-    message.success("All diet data has been reset!");
+    message.success("All app data has been reset!");
+    window.location.reload();
   };
 
   const renderDietPlan = () => {
@@ -271,70 +269,77 @@ function App() {
           className="content"
           style={{ maxWidth: 1200, margin: "0 auto" }}
         >
-          <Card style={{ marginBottom: 24, overflowX: "auto" }}>
-            <Row gutter={[8, 8]} justify="center" align="middle" wrap={true}>
-              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
-                <Button
-                  icon={<LeftOutlined />}
-                  onClick={goToPreviousDay}
-                  disabled={!startDate}
-                  block
-                  className="mobile-full-width"
-                >
-                  Previous Day
-                </Button>
-              </Col>
-              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
-                <Space
-                  direction="vertical"
-                  align="center"
-                  size="middle"
-                  style={{ width: "100%" }}
-                >
-                  <Title
-                    level={4}
-                    className="clock-title"
-                    style={{ margin: 0 }}
-                  >
-                    {now.format("HH:mm:ss")}
-                  </Title>
-                  <DatePicker
-                    className="mobile-full-width"
-                    onChange={handleDateChange}
-                    style={{ width: "100%" }}
-                  />
-                  <Popconfirm
-                    title="Are you sure to reset all diet data?"
-                    onConfirm={handleResetData}
-                    okText="Yes"
-                    cancelText="No"
-                  >
+          <Tabs defaultActiveKey="1" centered>
+            <TabPane tab="Diet Plan" key="1">
+              <Card style={{ marginBottom: 24, overflowX: "auto" }}>
+                <Row gutter={[8, 8]} justify="center" align="middle" wrap={true}>
+                  <Col xs={24} sm={8} style={{ textAlign: "center" }}>
                     <Button
-                      type="primary"
-                      danger
-                      icon={<ClearOutlined />}
+                      icon={<LeftOutlined />}
+                      onClick={goToPreviousDay}
+                      disabled={!startDate}
                       block
                       className="mobile-full-width"
                     >
-                      Reset All Data
+                      Previous Day
                     </Button>
-                  </Popconfirm>
-                </Space>
-              </Col>
-              <Col xs={24} sm={8} style={{ textAlign: "center" }}>
-                <Button
-                  icon={<RightOutlined />}
-                  onClick={goToNextDay}
-                  disabled={!startDate}
-                  block
-                  className="mobile-full-width"
-                >
-                  Next Day
-                </Button>
-              </Col>
-            </Row>
-          </Card>
-          {renderDietPlan()}
+                  </Col>
+                  <Col xs={24} sm={8} style={{ textAlign: "center" }}>
+                    <Space
+                      direction="vertical"
+                      align="center"
+                      size="middle"
+                      style={{ width: "100%" }}
+                    >
+                      <Title
+                        level={4}
+                        className="clock-title"
+                        style={{ margin: 0 }}
+                      >
+                        {now.format("HH:mm:ss")}
+                      </Title>
+                      <DatePicker
+                        className="mobile-full-width"
+                        onChange={handleDateChange}
+                        style={{ width: "100%" }}
+                      />
+                      <Popconfirm
+                        title="Are you sure to reset all app data?"
+                        onConfirm={handleResetData}
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <Button
+                          type="primary"
+                          danger
+                          icon={<ClearOutlined />}
+                          block
+                          className="mobile-full-width"
+                        >
+                          Reset All Data
+                        </Button>
+                      </Popconfirm>
+                    </Space>
+                  </Col>
+                  <Col xs={24} sm={8} style={{ textAlign: "center" }}>
+                    <Button
+                      icon={<RightOutlined />}
+                      onClick={goToNextDay}
+                      disabled={!startDate}
+                      block
+                      className="mobile-full-width"
+                    >
+                      Next Day
+                    </Button>
+                  </Col>
+                </Row>
+              </Card>
+              {renderDietPlan()}
+            </TabPane>
+            <TabPane tab="Body Composition" key="2">
+              <BodyComposition />
+            </TabPane>
+          </Tabs>
         </Content>
         <Footer
           style={{
@@ -350,3 +355,4 @@ function App() {
 }
 
 export default App;
+
